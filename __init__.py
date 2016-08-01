@@ -66,7 +66,7 @@ class PolySAddonPreferences(AddonPreferences):
         addon_prefs = user_preferences.addons[__name__].preferences
 
         row = layout.column(align=True)
-        row.label("Psst.  I hear that if you press \"M\" while in Sculpt mode, you get a sweet pie menu.")
+        row.label("Psst.  I hear that if you press \"Alt + M\" while in Sculpt mode, you get a sweet pie menu.")
         row.label("Don't tell anyone I told you this though... <_<")
 
 addon_keymaps = []
@@ -78,7 +78,7 @@ def register():
     if wm.keyconfigs.addon:
         # Views numpad
         km = wm.keyconfigs.addon.keymaps.new(name='Sculpt')
-        kmi = km.keymap_items.new('wm.call_menu_pie', 'M', 'PRESS')
+        kmi = km.keymap_items.new('wm.call_menu_pie', 'M', 'PRESS', alt=True)
         kmi.properties.name = "pie.maskstandard"
 #        kmi.active = True
         addon_keymaps.append(kmi)
