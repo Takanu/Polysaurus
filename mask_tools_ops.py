@@ -68,7 +68,7 @@ class VertexGroupToMask(bpy.types.Operator):
 
 # APPEND
 class VertexGroupToMaskAppend(bpy.types.Operator):
-    '''Adds the currently active vertex group on top of the current sculpting mask.'''
+    '''(! EXPERIMENTAL !) Adds the currently active vertex group on top of the current sculpting mask.'''
     bl_idname = "mesh.vgrouptomask_append"
     bl_label = "Append Vertex Group To Mask"
     bl_options = {'REGISTER', 'UNDO'}
@@ -120,7 +120,7 @@ class VertexGroupToMaskAppend(bpy.types.Operator):
 
 #REMOVE
 class VertexGroupToMaskRemove(bpy.types.Operator):
-    '''Subtracts the currently active vertex group from the current sculpting mask.'''
+    '''(! EXPERIMENTAL !) Subtracts the currently active vertex group from the current sculpting mask.'''
     bl_idname = "mesh.vgrouptomask_remove"
     bl_label = "Remove Vertex Group From Mask"
     bl_options = {'REGISTER', 'UNDO'}
