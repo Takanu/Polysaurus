@@ -26,7 +26,7 @@ bl_info = {
     "description": "Sculpt masking presets and shortcuts, built from the Mask Tools addon.",
     "warning": "Beta",
     "tracker_url": "",
-    "category": "Scene"
+    "category": "Sculpting"
 }
 
 # Start importing all the addon files
@@ -65,8 +65,9 @@ class PolySAddonPreferences(AddonPreferences):
         user_preferences = context.user_preferences
         addon_prefs = user_preferences.addons[__name__].preferences
 
-        row = layout.row(align=True)
-        row.label("Hi.")
+        row = layout.column(align=True)
+        row.label("Psst.  I hear that if you press \"M\" while in Sculpt mode, you get a sweet pie menu.")
+        row.label("Don't tell anyone I told you this though... <_<")
 
 addon_keymaps = []
 

@@ -41,8 +41,8 @@ class PS_Collection(Panel):
         vg_groups = vg.column(align=True)
         vg_groups.label("Vertex Group Tools", icon="GROUP_VERTEX")
         vg_groups.separator()
+        vg_groups.operator("mesh.vgrouptomask", icon='FORWARD', text="Replace Mask with Group").index = -1
         vg_groups_bool = vg_groups.row(align=True)
-        vg_groups_bool.operator("mesh.vgrouptomask", icon='FORWARD', text="Replace").index = -1
         vg_groups_bool.operator("mesh.vgrouptomask_append", icon='ZOOMIN', text="Add")
         vg_groups_bool.operator("mesh.vgrouptomask_remove", icon='ZOOMOUT', text="Subtract")
         vg_groups.separator()
@@ -56,18 +56,18 @@ class PS_Collection(Panel):
         vg_mask.separator()
         vg_mask.separator()
 
-class PS_Tools(Panel):
-    bl_space_type = "VIEW_3D"
-    bl_region_type = "TOOLS"
-    bl_context = "sculpt_mode"
-    bl_label = "Tools"
-    bl_category = "Polysaurus"
+#class PS_Tools(Panel):
+    #bl_space_type = "VIEW_3D"
+    #bl_region_type = "TOOLS"
+    #bl_context = "sculpt_mode"
+    #bl_label = "Tools"
+    #bl_category = "Polysaurus"
 
-    def draw(self, context):
-        layout = self.layout
+    #def draw(self, context):
+        #layout = self.layout
 
-        ob = context.object
-        group = ob.vertex_groups.active
+        #ob = context.object
+        #group = ob.vertex_groups.active
 
-        vg = layout.column(align=True)
-        vg.label("Vertex Groups")
+        #vg = layout.column(align=True)
+        #vg.label("Vertex Groups")
