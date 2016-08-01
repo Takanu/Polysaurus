@@ -18,7 +18,7 @@
 #This states the metadata for the plugin
 bl_info = {
     "name": "Polysaurus",
-    "author": "Takanu Kyriako, Stanislav Blinov, Yigit Savtur",
+    "author": "Takanu Kyriako, w/code from Stanislav Blinov, Yigit Savtur",
     "version": (1,0),
     "blender": (2, 7, 7),
     "api": 39347,

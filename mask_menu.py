@@ -1,3 +1,9 @@
+#
+# Thanks to pitiwazou and meta-androcto's pie menu plugin, which helped me
+# structure this!
+#
+
+
 import bpy
 from bpy.types import Menu
 
@@ -47,20 +53,26 @@ class SculptMaskLasso(bpy.types.Operator):
     bl_label = "Hide Mask"
     bl_options = {'REGISTER', 'UNDO'}
 
-    def execute(self, context):
-        bpy.ops.paint.mask_lasso_gesture()
-        return {'FINISHED'}
 
-class SculptMaskBorder(bpy.types.Operator):
-    '''Hides parts of the mesh with a mask.'''
-    bl_idname = "sculpt.mask_border"
-    bl_label = "Hide Mask"
-    bl_options = {'REGISTER', 'UNDO'}
+class PieSculptMaskSelect(Menu):
+    bl_idname = "pie.maskfromgroup"
+    bl_label = "Select Mask"
 
-    def execute(self, context):
-        bpy.ops.view3d.select_border()
-        return {'FINISHED'}
+    def draw(self, context):
+        print("Drawing Pie")
+        layout = self.layout
+        pie = layout.menu_pie()
 
+        ob = context.object
+        group = ob.vertex_groups.active
+        i = 0
+
+        if ob:
+            for group in ob.vertex_groups:
+                if i > 7:
+                    break
+                pie.operator("mesh.vgrouptomask", text=group.name, icon="GROUP_VERTEX").index = i
+                i += 1
 
 class PieSculptMaskStandard(Menu):
     bl_idname = "pie.maskstandard"
@@ -71,16 +83,18 @@ class PieSculptMaskStandard(Menu):
         layout = self.layout
         pie = layout.menu_pie()
         # 4 - LEFT
-        pie.operator("sculpt.mask_lasso", text="Lasso Mask")
-        # 6 - RIGHT
         pie.operator("sculpt.mask_clear", text="Clear Mask")
-        # 2 - BOTTOM
+        # 6 - RIGHT
         pie.operator("sculpt.mask_invert", text="Invert Mask")
-        # 8 - TOP
-        pie.operator("sculpt.mask_border", text="Rectangle Mask")
-        # 7 - TOP - LEFT
-        # 1 - BOTTOM - LEFT
+        # 2 - BOTTOM
         pie.operator("sculpt.mask_hide", text="Hide Mask")
-        # 9 - TOP - RIGHT
+        # 8 - TOP
         pie.operator("sculpt.mask_show", text="Show All")
+        # 7 - TOP - LEFT
+        pie.operator("view3d.select_border", text="Box Mask", icon="BORDER_RECT")
+        # 1 - BOTTOM - LEFT
+        pie.operator("mesh.masktovgroup", text="Create Group from Mask", icon="GROUP_VERTEX")
+        # 9 - TOP - RIGHT
+        pie.operator("paint.mask_lasso_gesture", text="Lasso Mask", icon="BORDER_LASSO")
         # 3 - BOTTOM - RIGHT
+        pie.operator("wm.call_menu_pie", text="Replace Mask with Group", icon="MOD_MASK").name = "pie.maskfromgroup"

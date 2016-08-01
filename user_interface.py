@@ -42,7 +42,7 @@ class PS_Collection(Panel):
         vg_groups.label("Vertex Group Tools", icon="GROUP_VERTEX")
         vg_groups.separator()
         vg_groups_bool = vg_groups.row(align=True)
-        vg_groups_bool.operator("mesh.vgrouptomask", icon='FORWARD', text="Replace")
+        vg_groups_bool.operator("mesh.vgrouptomask", icon='FORWARD', text="Replace").index = -1
         vg_groups_bool.operator("mesh.vgrouptomask_append", icon='ZOOMIN', text="Add")
         vg_groups_bool.operator("mesh.vgrouptomask_remove", icon='ZOOMOUT', text="Subtract")
         vg_groups.separator()
@@ -51,7 +51,8 @@ class PS_Collection(Panel):
         vg_mask = vg.column(align=True)
         vg_mask.label("Mask Tools", icon='MOD_MASK')
         vg_mask.separator()
-        vg_mask.operator("mesh.masktovgroup", icon='ZOOMIN', text="Mask to New Vertex Group")
+        vg_mask.operator("mesh.masktovgroup", icon='ZOOMIN', text="Create New Group")
+        vg_mask.operator("mesh.masktovgroup", icon='BACK', text="Replace Selected Group").new_group = False
         vg_mask.separator()
         vg_mask.separator()
 
